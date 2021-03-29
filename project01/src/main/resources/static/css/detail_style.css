@@ -21,7 +21,7 @@ textarea:focus {
 
   height: 250px;
   padding: 20px;
-  background-image: url("./background4.png");
+  background-image: url("img/background4.png");
   background-position: bottom;
   background-size: cover;
   /* background: no-repeat; */

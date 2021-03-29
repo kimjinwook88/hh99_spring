@@ -25,10 +25,18 @@ public class Member extends Timestamped{
     @Column(nullable = false)
     private String password;
     
+    @Column(nullable = false)
+    private String passwordNen;
+    
+    @Column(nullable = false)
+    private String passwordConfirm;
+    
     public Member(MemberRequestDto memberRequestDto){
     	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); //암호화 
     	
         this.username = memberRequestDto.getUsername();
         this.password = encoder.encode(memberRequestDto.getPassword());
+        this.passwordNen = memberRequestDto.getPasswordNen();
+        this.passwordConfirm = memberRequestDto.getPasswordConfirm();
     }
 }

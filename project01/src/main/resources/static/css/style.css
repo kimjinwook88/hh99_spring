@@ -25,7 +25,7 @@ textarea:focus {
   display: flex;
 }
 .left__container {
-  background-image: url("background4.png");
+  background-image: url("img/background4.png");
   background-size: cover;
   background-position: top;
   min-width: 25%;

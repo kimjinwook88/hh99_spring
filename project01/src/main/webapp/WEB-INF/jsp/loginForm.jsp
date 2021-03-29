@@ -1,17 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- spring security 를 활용한 로그인 체크 start -->
+
+<!-- jsp에서 spring security 를 활용하기 위한 import-->
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
+<%@ page import="org.springframework.security.core.userdetails.UserDetails" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- 
+	jsp에서 로그인 여부 판단하여 index페이지로 이동
+	spring security 내부 함수 호출하여 로그인 비로그인 판단
+ -->
 <%
 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 Object principal = auth.getPrincipal();
+UserDetails userDetails = null;
+String usernameJsp = null;
 
-if(!principal.equals("anonymousUser")){
-	response.sendRedirect("index.html");
+if(principal.equals("anonymousUser")){ //비로그인
+	usernameJsp = "";
+}else{ //일반 로그인 or 카카오톡
+	userDetails = (UserDetails)principal;
+	usernameJsp = userDetails.getUsername();
+	response.sendRedirect("/index");
 }
 %>
+<!-- spring security 를 활용한 로그인 체크 end -->
 <html>
 <head>
 <meta charset="UTF-8">
@@ -22,6 +37,12 @@ if(!principal.equals("anonymousUser")){
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+
+<!-- kakao api -->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/login.js"></script>
+
 
 <div class="container">
     <div class="row">
@@ -44,8 +65,8 @@ if(!principal.equals("anonymousUser")){
 			    	   <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			      	</form>
                     <input class="btn btn-lg btn-facebook btn-block" type="button" style="background-color: #EEE;" value="회원가입" onclick="javascript:location.href='register.html';">
-                    <input class="btn btn-lg btn-facebook btn-block" type="button" style="background-color: #E7E600;" value="카카오톡 가입">
-                    <input class="btn btn-lg btn-facebook btn-block" type="button" style="background-color: #6799FF;" value="게시글 조회" onclick="javascript:location.href='index.html';">
+                    <input class="btn btn-lg btn-facebook btn-block" type="button" style="background-color: #E7E600;" value="카카오톡 로그인" onclick="kakaoLogin();">
+                    <input class="btn btn-lg btn-facebook btn-block" type="button" style="background-color: #6799FF;" value="게시글 조회" onclick="javascript:location.href='/index';">
 			    </div>
 			</div>
 		</div>
@@ -53,19 +74,3 @@ if(!principal.equals("anonymousUser")){
 </div>
 
 </html>	
-
-<sec:authorize access="isAnonymous()"> 
-</sec:authorize>
-<script type="text/javascript">
-		//location.href = "/index.html";
-</script>
-
-
-<script type="text/javascript">
-/* 
-	let ls = location.search;
-	if(ls.indexOf("error=1") != -1){
-		alert("닉네임 또는 패스워드를 확인해 주세요.");
-		location.href = "/login.html";
-	} */
-</script>

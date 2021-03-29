@@ -28,7 +28,7 @@ function getDetail(id) {
 }
 
 function addDetail(id, username, title, contents, modifiedAt) {
-    let tempHtml = `<div class ="detail">
+    let tempHtml = `<div class ="detail" id="article_id" data-id=${id}>
     <div class="content-header">
           <h1 class="title">${title}</h1>
           <p class="post-author">
@@ -42,7 +42,14 @@ function addDetail(id, username, title, contents, modifiedAt) {
           </p>
         </div>
     </div>`
-    $('.content__container').append(tempHtml)
+    $('.content__container').append(tempHtml);
+
+	let replyHtml = "";
+	replyHtml +=  '<div id="replyDiv" style="padding-bottom:15px;">';
+	replyHtml +=  '<input type="text" id="replyContent" placeholder="댓글을 입력해 주세요.">';
+	replyHtml +=  '<input type="button" value="댓글작성" onclick="postReply();">';
+	replyHtml +=  '</div>';
+	 $('.content__container').append(replyHtml);
 }
 
 function showHide() {

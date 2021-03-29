@@ -1,18 +1,24 @@
 package com.hh99_spring.project01.service;
 
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
 import com.hh99_spring.project01.domain.AritcleRequestDto;
 import com.hh99_spring.project01.domain.Article;
 import com.hh99_spring.project01.domain.ArticleRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.hh99_spring.project01.domain.Reply;
+import com.hh99_spring.project01.domain.ReplyRepository;
+import com.hh99_spring.project01.domain.ReplyRequestDto;
 
-import javax.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
 public class ArticleService {
 
-    private final ArticleRepository articleRepository;
+	private final ArticleRepository articleRepository;
+    private final ReplyRepository replyRepository;
 
     @Transactional
     public Long update(Long id, AritcleRequestDto aritcleRequestDto){
@@ -21,5 +27,14 @@ public class ArticleService {
         );
         article.update(aritcleRequestDto);
         return article.getId();
+    }
+    
+    @Transactional
+    public Long updateReply(Long id, ReplyRequestDto replyRequestDto){
+        Reply reply = replyRepository.findById(id).orElseThrow(
+                ()-> new IllegalArgumentException("해당 아이디가 없습니다.")
+        );
+        reply.update(replyRequestDto);
+        return reply.getId();
     }
 }
