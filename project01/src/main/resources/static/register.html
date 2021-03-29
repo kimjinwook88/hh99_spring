@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="KR">
+  <head>
+    <meta charset="UTF-8" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="js/register.js"></script>
+	<!------ Include the above in your HEAD tag ---------->
+	<title>회원가입</title>
+  </head>
+<form class="form-horizontal" action='' method="POST">
+  <fieldset>
+    <div id="legend">
+      <legend class="">회원가입</legend>
+    </div>
+    <div class="control-group">
+      <!-- Username -->
+      <label class="control-label"  for="username">닉네임</label>
+      <div class="controls">
+        <input type="text" id="username" class="username" name="username" placeholder="" class="input-xlarge" onkeyup="this.value=this.value.replace(/[^a-zA-Z-_0-9]/g,'');">
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Password-->
+      <label class="control-label" for="password">비밀번호</label>
+      <div class="controls">
+        <input type="password" id="password" class="password" name="password" placeholder="" class="input-xlarge">
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Password -->
+      <label class="control-label"  for="password_confirm">비밀번호 확인</label>
+      <div class="controls">
+        <input type="password" id="passwordConfirm" class="passwordConfirm" name="passwordConfirm" placeholder="" class="input-xlarge">
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success" type="button" onclick="register();">가입하기</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+</html>
