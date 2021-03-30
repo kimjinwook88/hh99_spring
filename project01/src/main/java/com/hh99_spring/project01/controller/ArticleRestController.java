@@ -72,35 +72,32 @@ public class ArticleRestController {
         return id;
     }
     
+    
     /* 댓글 조회 */
     @GetMapping("/api/reply")
     public List<Reply> getReply(@RequestParam(value = "article_id") Long article_id) {
-    	return replyRepository.findByArticleIdOrderByModifiredAtDesc(article_id);
+    	return null;
     }
     
     /* 댓글 입력 */
+    /* 로그인하지 않은 사용자 확인 필요 security에서 principal에서 구분*/
  	@PostMapping("/api/reply")
     public Reply createReply(@RequestBody ReplyRequestDto replyRequestDto) {
     	Reply reply = new Reply(replyRequestDto);
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	Object principal = auth.getPrincipal();
-    	if(principal.equals("anonymousUser")) {
-    		throw new IllegalArgumentException("로그인 하지 않은 사용자 입니다."); 
-    	}
-        return replyRepository.save(reply);
+        return null;
     }
     
  	/* 댓글 수정 */
 	@PutMapping("/api/reply/{id}")
 	public Long updateReply(@PathVariable Long id, @RequestBody ReplyRequestDto replyRequestDto) {
-		return articleService.updateReply(id, replyRequestDto);
+		return 0L;
 	}
 	
 	/* 댓글 삭제 */
 	@DeleteMapping("/api/reply/{id}")
 	public Long deleteReply(@PathVariable Long id) {
-		replyRepository.deleteById(id);
-		return id;
+		return 0L;
 	}
     
 }
