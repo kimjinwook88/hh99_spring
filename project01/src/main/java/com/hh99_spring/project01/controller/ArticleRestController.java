@@ -96,7 +96,7 @@ public class ArticleRestController {
 	
 	/* 댓글 삭제 */
 	@DeleteMapping("/api/reply/{id}")
-	public Long deleteReply(@PathVariable Long id) {
+	public Long deleteReply(@PathVariable Long id) { 
 		return 0L;
 	}
     
