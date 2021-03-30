@@ -24,17 +24,6 @@ public class RegisterTest {
 	 */
 	@Test
 	public void test() {
-		MemberRequestDto dto = new MemberRequestDto();
-		dto.setUsername("abc");
-		dto.setPassword("이건 사용 안함");
-		dto.setPasswordNen("1111");
-		dto.setPasswordConfirm("1234");
-		Member member = new Member(dto);
-		
-		
-		registerService.checkName(member);
-		registerService.checkNameDuplication(member);
-		registerService.checkPassword(member);
 		
 	}
 }
