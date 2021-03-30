@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
-	@Query(value = "SELECT * FROM reply r WHERE r.article_id = :article_id order by modified_at desc", nativeQuery = true) 
+	// @Query 어노테이션을 활용하여 article_id로 댓글을 조회한다 정렬 기준은 업데이트 일시 기준
 	List<Reply> findByArticleIdOrderByModifiredAtDesc(@Param(value = "article_id") Long article_id);
 }

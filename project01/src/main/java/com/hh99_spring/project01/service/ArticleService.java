@@ -29,12 +29,9 @@ public class ArticleService {
         return article.getId();
     }
     
+    //댓글 업데이트 로직
     @Transactional
     public Long updateReply(Long id, ReplyRequestDto replyRequestDto){
-        Reply reply = replyRepository.findById(id).orElseThrow(
-                ()-> new IllegalArgumentException("해당 아이디가 없습니다.")
-        );
-        reply.update(replyRequestDto);
-        return reply.getId();
+        return 0L;
     }
 }

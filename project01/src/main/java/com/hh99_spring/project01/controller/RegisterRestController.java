@@ -23,16 +23,12 @@ public class RegisterRestController {
     
     /*
      * 회원 가입 
-     * 등록 전 조건 체크 후 Exception 발생
-     * registerService에서 처리
+     * 등록 전 요구사항 조건 체크 후 Exception 발생
      */
     @PostMapping("/api/register")
     public Member createMember(@RequestBody MemberRequestDto memberRequestDto) {
         Member member = new Member(memberRequestDto);
-        registerService.checkName(member);
-        registerService.checkPassword(member);
-        registerService.checkNameDuplication(member);
-        return memberRepository.save(member);
+        return null;
     }
     
     /*
@@ -41,6 +37,6 @@ public class RegisterRestController {
      */
     @GetMapping("/api/user/{name}")
     public Member checkNm(@PathVariable String name) {
-    	return memberRepository.findByUsername(name);
+    	return null;
     }
 }

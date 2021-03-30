@@ -78,12 +78,8 @@ function addArticle(id, username, title, contents, modifiedAt){
 }
 
 // 로그 아웃
-// spring security 에서 logout 액션을 받아 세션 처리
+// spring security 에서 /logout 을 요청하면 세션처리
 // kakao 사용자도 함께 logout 처리
 function logout(){
-	Kakao.init('6f648d1f2020390cf15b616d364b36b0');
-	Kakao.Auth.logout();
-	setTimeout(function(){
-		location.href = "/logout";
-	},200);
+	Kakao.init('인증키');
 }

@@ -36,24 +36,7 @@
     			alert("닉네임 중복 입니다.");
     			return false;
     		}else{
-    			//회원가입 
-    			 $.ajax({
-			        type:'POST',
-			        url:'/api/register',
-			        contentType:'application/json',
-			        data: JSON.stringify(data),
-			        async : false,
-			        beforeSend : function(xhr, opts) {
-			            
-			        },
-			        success: function (response){
-			            alert("회원 가입이 완료 되었습니다!");
-			            location.href = "/loginForm";
-			        },
-			        error : function(err){
-			        	
-			        }
-			    });
+    			//회원가입 ajax 호출
     		}
     	});
 	}
@@ -61,48 +44,15 @@
 	// 닉네임 체크 (정규식 활용)
 	function checkName(){
 		let err_msg = "";
-		let username = $('.username').val();
-		let regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{3,20}$/; //  3 ~ 20자 영문, 숫자 조합
-		
-		if (username == '') {
-	    	err_msg = '닉네임을 적어주세요!';
-	    } else if(!regExp.test(username)){ 
-			err_msg = "닉네임은 숫자와 영문자 조합으로 3~20자리를 사용해야 합니다.";
-	    }
 		return err_msg;
 	}
 	
-	// 닉네임 중복 체크 (ajax db 조회 체크)
+	// 닉네임 중복 체크 (ajax db 조회 체크 후 callback 함수로 response 전달)
 	function checkNameDuplication(callback){
-		let username = $('.username').val();
-		 $.ajax({
-	        type:'GET',
-	        url:`/api/user/${username}`,
-	        contentType:'application/json',
-	        beforeSend : function(xhr, opts) {
-	        },
-	        success: function (response){
-	        	callback(response); //동기화 처리
-	        }
-	    });
 	}
 	
 	//비밀번호 체크
 	function checkPass(){
 		let err_msg = "";
-		let username = $('.username').val();
-		let password = $('.password').val();
-		let passwordConfirm = $('.passwordConfirm').val();
-		
-		if (password == '' || passwordConfirm == '') {
-	    	err_msg = '패스워드를 적어주세요!';
-	    } else if(password.length < 4 || password.length > 20){ 
-			err_msg = '비밀번호는  4~20자리를 사용해야 합니다.'; 
-	    } else if(password.indexOf(username) != -1){
-			err_msg = "비밀번호에 닉네임을 포함할 수 없습니다.";
-		} else if (password != passwordConfirm) {
-	    	err_msg = '패스워드가 일치하지 않습니다!';
-	    } 
-		
 		return err_msg;
 	}

@@ -17,21 +17,19 @@ public class LoginRestController {
 	private final LoginService loginService;
 	
 	 /*
-	 * 로그인 페이지 이동
+	 * 로그인 페이지로 redirect (기본페이지 설정)
 	 */
 	 @RequestMapping(value="/") 
      public ModelAndView index() {
-		 ModelAndView modelAndView = new ModelAndView("redirect:loginForm"); 
-		 return modelAndView;
+		 return null;
      }
 	 
 	 /*
-	 * 로그인 페이지 이동
+	 * 로그인 페이지 이동 
 	 */
 	 @RequestMapping(value="/loginForm") 
 	  public ModelAndView loginForm() {
-	      ModelAndView modelAndView = new ModelAndView("loginForm"); 
-		 return modelAndView;
+		 return null;
 	  }
 	 
 	 /*
@@ -39,8 +37,7 @@ public class LoginRestController {
 	 */
 	 @RequestMapping(value="/loginFail")
 	  public ModelAndView loginFail() {
-	     ModelAndView modelAndView = new ModelAndView("loginFail");
-		 return modelAndView;
+	     return null;
 	  }
 	 
 	 
@@ -49,6 +46,6 @@ public class LoginRestController {
 	 */
 	 @GetMapping(value="/kakao/token")
 	  public int kakaoToken(@RequestParam(value = "token") String token, @RequestParam(value = "username") String username) {
-		 return loginService.getKakaoTokenCheck(token, username);
+		 return 0;
 	  }
 }

@@ -60,35 +60,12 @@ public class LoginService  implements UserDetailsService {
 	/*
 	 * 카카오 토큰 유효성 검사 (참고 사이트 : https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#get-token-info)
 	 * 유효한 토큰이라면 spring security 사용하여 강제적으로 로그인 loadUserByUsernameKaKao 함수 참고
+	 * 
 	 */
 	public int getKakaoTokenCheck(String token, String username) {
 		URL url = null;
 		HttpURLConnection conn = null;
-		int code = 0;
-		try {
-			url = new URL("https://kapi.kakao.com/v1/user/access_token_info");
-			conn = (HttpURLConnection)url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-			conn.setRequestProperty("Authorization", "Bearer "+token);
-			conn.setDoOutput(true);
-			conn.disconnect();
-			code = conn.getResponseCode();
-			if(code == 200 && username != null && username != "") {
-				loadUserByUsernameKaKao(username);
-			}
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-		}
-		
+		int code = 0; //reponse code가 200이면 유효 토큰으로 판단후 loadUserByUsernameKaKao를 사용하여 강제 로그인
 		return code;
 	}
 
