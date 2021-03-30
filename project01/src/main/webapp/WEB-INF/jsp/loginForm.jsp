@@ -52,6 +52,7 @@ if(principal.equals("anonymousUser")){ //비로그인
 			    	<h3 class="panel-title">Login</h3>
 			 	</div>
 			  	<div class="panel-body">
+			  		<!-- spring security에서 /login 액션 캐치 -->
 			    	<form accept-charset="UTF-8" role="form" action="/login" method="post">
                     <fieldset>
 			    	  	<div class="form-group">

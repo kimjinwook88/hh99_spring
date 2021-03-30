@@ -1,10 +1,14 @@
-
 $(document).ready(function () {
 	setTimeout(function(){
 		 getReply();
 	},200);
 });
 
+
+/*
+	댓글 입력
+	로그인 체크, post ajax 호출 
+*/
 function postReply(){
 	 if(global_username == ""){
 		alert("로그인 해주세요.");
@@ -35,6 +39,9 @@ function postReply(){
     });
 }
 
+/*
+	댓글 조회
+*/
 function getReply(){
 	 let article_id = parseInt($("#article_id").attr("data-id"));
 	 $.ajax({
@@ -50,6 +57,10 @@ function getReply(){
     });
 }
 
+/*
+	댓글 html 그리기
+	로그인한 사용자와 댓글작성자 비교하여 수정, 삭제 버튼 노출 여부 판단
+*/
 function addReply(data){
 	$(".replyContents").remove();
 	for(i=0; i<data.length; i++){
@@ -71,6 +82,7 @@ function addReply(data){
 	}
 }
 
+/* 댓글 삭제 */
 function deleteReply(id){
     $.ajax({
     	method: "DELETE",
@@ -87,6 +99,7 @@ function deleteReply(id){
     });
 }
 
+/* 댓글 수정 */
 function updateReply(id, obj){
 	let data = {'username': global_username, 'article_id': parseInt($("#article_id").attr("data-id")), 'contents': $(obj).prev().prev().val()};
  	

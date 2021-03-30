@@ -59,6 +59,7 @@ function getArticle(){
         }
     })
 }
+
 function addArticle(id, username, title, contents, modifiedAt){
     let tempHtml = `<div class="card">
                     <div class="card-header">
@@ -77,10 +78,11 @@ function addArticle(id, username, title, contents, modifiedAt){
 }
 
 // 로그 아웃
+// spring security 에서 logout 액션을 받아 세션 처리
+// kakao 사용자도 함께 logout 처리
 function logout(){
 	Kakao.init('6f648d1f2020390cf15b616d364b36b0');
 	Kakao.Auth.logout();
-	setCookie("kakaousername","",0);
 	setTimeout(function(){
 		location.href = "/logout";
 	},200);

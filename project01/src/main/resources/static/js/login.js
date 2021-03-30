@@ -1,3 +1,4 @@
+//카카오톡 개발자 홈페이지에서 개인적으로 등록 필요 (https://developers.kakao.com/console/app)
 $(document).ready(function(){
 	Kakao.init('6f648d1f2020390cf15b616d364b36b0');
 	if(Kakao.Auth.getAccessToken() != null){

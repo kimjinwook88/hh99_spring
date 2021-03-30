@@ -9,7 +9,7 @@
 	 */
  
 	//가입하기
-	//client, server 둘다 체크
+	//client, server 둘다 유효성 및 조건 체크
 	function register(){
 		let username = $('.username').val();
 	    let password = $('.password').val();
@@ -72,7 +72,7 @@
 		return err_msg;
 	}
 	
-	// 닉네임 중복 체크 (ajax db 조회)
+	// 닉네임 중복 체크 (ajax db 조회 체크)
 	function checkNameDuplication(callback){
 		let username = $('.username').val();
 		 $.ajax({

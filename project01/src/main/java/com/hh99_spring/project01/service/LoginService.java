@@ -30,9 +30,10 @@ public class LoginService  implements UserDetailsService {
 
 	@Autowired
 	private MemberRepository memberRepository;
-	@Autowired
-	private UserDetailsService userDetailsService;
 	
+	/*
+	 * Spring Security에서 제공하는 사용자 정보 저장 함수
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
@@ -44,6 +45,9 @@ public class LoginService  implements UserDetailsService {
 		return new User(member.getUsername(), member.getPassword(), roles);
 	}
 	
+	/*
+	 * 카카오 로그인 후 강제로 spring security 사용자 정보 저장
+	 */
 	public void loadUserByUsernameKaKao(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
@@ -53,7 +57,10 @@ public class LoginService  implements UserDetailsService {
 	}
 	
 	
-	//카카오톡 토큰 유효성 검사 (참고 사이트 : https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#get-token-info)
+	/*
+	 * 카카오 토큰 유효성 검사 (참고 사이트 : https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#get-token-info)
+	 * 유효한 토큰이라면 spring security 사용하여 강제적으로 로그인 loadUserByUsernameKaKao 함수 참고
+	 */
 	public int getKakaoTokenCheck(String token, String username) {
 		URL url = null;
 		HttpURLConnection conn = null;

@@ -72,11 +72,13 @@ public class ArticleRestController {
         return id;
     }
     
+    /* 댓글 조회 */
     @GetMapping("/api/reply")
     public List<Reply> getReply(@RequestParam(value = "article_id") Long article_id) {
     	return replyRepository.findByArticleIdOrderByModifiredAtDesc(article_id);
     }
- 
+    
+    /* 댓글 입력 */
  	@PostMapping("/api/reply")
     public Reply createReply(@RequestBody ReplyRequestDto replyRequestDto) {
     	Reply reply = new Reply(replyRequestDto);
@@ -88,11 +90,13 @@ public class ArticleRestController {
         return replyRepository.save(reply);
     }
     
+ 	/* 댓글 수정 */
 	@PutMapping("/api/reply/{id}")
 	public Long updateReply(@PathVariable Long id, @RequestBody ReplyRequestDto replyRequestDto) {
 		return articleService.updateReply(id, replyRequestDto);
 	}
-
+	
+	/* 댓글 삭제 */
 	@DeleteMapping("/api/reply/{id}")
 	public Long deleteReply(@PathVariable Long id) {
 		replyRepository.deleteById(id);

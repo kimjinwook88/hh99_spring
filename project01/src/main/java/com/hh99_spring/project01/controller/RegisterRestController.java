@@ -22,7 +22,9 @@ public class RegisterRestController {
     private final MemberRepository memberRepository;
     
     /*
-     * 회원 가입
+     * 회원 가입 
+     * 등록 전 조건 체크 후 Exception 발생
+     * registerService에서 처리
      */
     @PostMapping("/api/register")
     public Member createMember(@RequestBody MemberRequestDto memberRequestDto) {
@@ -35,6 +37,7 @@ public class RegisterRestController {
     
     /*
      * 닉네임 중복 체크
+     * DB조회로 판단
      */
     @GetMapping("/api/user/{name}")
     public Member checkNm(@PathVariable String name) {
