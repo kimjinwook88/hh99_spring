@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class ArticleService {
 
 	private final ArticleRepository articleRepository;
-    private final ReplyRepository replyRepository;
+//    private final ReplyRepository replyRepository;
 
     @Transactional
     public Long update(Long id, AritcleRequestDto aritcleRequestDto){
@@ -30,8 +30,8 @@ public class ArticleService {
     }
     
     //댓글 업데이트 로직
-    @Transactional
-    public Long updateReply(Long id, ReplyRequestDto replyRequestDto){
-        return 0L;
-    }
+//    @Transactional
+//    public Long updateReply(Long id, ReplyRequestDto replyRequestDto){
+//        return 0L;
+//    }
 }
